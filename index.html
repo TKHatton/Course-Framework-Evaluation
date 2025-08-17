@@ -490,24 +490,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase configuration - REPLACE WITH YOUR ACTUAL VALUES
-        const SUPABASE_URL = 'your_actual_supabase_url';
-        const SUPABASE_ANON_KEY = 'your_actual_supabase_anon_key';
+        // No Supabase credentials needed in HTML anymore!
+        // The serverless function handles all database operations
         
-        let supabase = null;
-        
-        // Safe initialization
-        try {
-            if (SUPABASE_URL !== 'your_actual_supabase_url' && SUPABASE_ANON_KEY !== 'your_actual_supabase_anon_key') {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log('Supabase initialized successfully');
-            } else {
-                console.log('Please add your Supabase credentials to enable file uploads');
-            }
-        } catch (error) {
-            console.error('Supabase initialization failed:', error);
-        }
-
         let uploadedFiles = [];
 
         // Status message functionality
@@ -598,11 +583,6 @@
 
         // File upload to Supabase
         async function uploadFiles() {
-            if (!supabase) {
-                showStatus('Please add your Supabase credentials to the HTML file first', 'error');
-                return;
-            }
-            
             if (uploadedFiles.length === 0) {
                 showStatus('Please select files to upload', 'error');
                 return;
@@ -614,52 +594,34 @@
             document.getElementById('evaluateBtn').disabled = true;
 
             try {
-                showStatus('Uploading files to storage...', 'info');
+                showStatus('Uploading files and creating submission...', 'info');
                 
-                // Step 1: Upload files to Supabase Storage
-                const uploadedFilePaths = [];
-                const fileNames = [];
-
-                for (const file of uploadedFiles) {
-                    const fileName = `${Date.now()}-${file.name}`;
-                    
-                    const { data, error } = await supabase.storage
-                        .from('course-submissions')
-                        .upload(fileName, file);
-
-                    if (error) {
-                        console.error('Upload error:', error);
-                        throw new Error(`Failed to upload ${file.name}: ${error.message}`);
-                    }
-
-                    uploadedFilePaths.push(data.path);
-                    fileNames.push(file.name);
+                // Create form data with files
+                const formData = new FormData();
+                uploadedFiles.forEach((file, index) => {
+                    formData.append(`file_${index}`, file);
+                });
+                
+                // Upload files and create submission via serverless function
+                const uploadResponse = await fetch('/.netlify/functions/upload-files', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!uploadResponse.ok) {
+                    throw new Error(`Upload failed: ${uploadResponse.statusText}`);
                 }
-
-                showStatus('Creating submission record...', 'info');
-
-                // Step 2: Create submission record in database
-                const { data: submission, error: submissionError } = await supabase
-                    .from('course_submissions')
-                    .insert([{
-                        file_paths: uploadedFilePaths,
-                        original_filenames: fileNames,
-                        submission_status: 'uploaded',
-                        analysis_status: 'pending',
-                        created_at: new Date().toISOString()
-                    }])
-                    .select()
-                    .single();
-
-                if (submissionError) {
-                    console.error('Submission error:', submissionError);
-                    throw new Error(`Failed to create submission record: ${submissionError.message}`);
+                
+                const uploadData = await uploadResponse.json();
+                
+                if (!uploadData.success) {
+                    throw new Error(uploadData.error || 'Upload failed');
                 }
-
+                
                 showStatus('Files uploaded successfully! Starting analysis...', 'success');
-
-                // Step 3: Start analysis
-                await analyzeSubmission(submission);
+                
+                // Start analysis with the submission data
+                await analyzeSubmission(uploadData.submission);
                 
             } catch (error) {
                 console.error('Upload error:', error);
