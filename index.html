@@ -491,8 +491,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // Supabase configuration - REPLACE WITH YOUR ACTUAL VALUES
-        const SUPABASE_URL = 'https://zogvnojgmeteutpperfg.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3Zub2pnbWV0ZXV0cHBlcmZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUyNjgxNzYsImV4cCI6MjA3MDg0NDE3Nn0.-86bWVQDPMp1m1ENAaHCYTnPxIE6eoDhy5aK7EBVXQs';
+        const SUPABASE_URL = 'your_actual_supabase_url';
+        const SUPABASE_ANON_KEY = 'your_actual_supabase_anon_key';
         
         let supabase = null;
         
@@ -674,59 +674,172 @@
             try {
                 showStatus('Analyzing content against SHE IS AI framework...', 'info');
                 
-                // Simulate analysis time
-                await new Promise(resolve => setTimeout(resolve, 3000));
-
-                // Generate sample analysis results
-                const sampleResults = [
-                    {
-                        title: 'Equity & Inclusion Assessment',
-                        category: 'Core Framework',
-                        similarity: 0.85,
-                        analysis: `Analysis of ${submission.original_filenames.join(', ')}: Your course materials demonstrate strong alignment with equity principles. The content shows awareness of diverse learning needs and includes multiple perspectives.`,
-                        recommendation: 'Consider adding more explicit bias elimination protocols and diverse example selection strategies to strengthen inclusive practices.'
-                    },
-                    {
-                        title: 'Learning Structure Analysis',
-                        category: 'Lesson Structure',
-                        similarity: 0.72,
-                        analysis: 'The lesson organization follows good pedagogical practices with clear objectives and structured content delivery.',
-                        recommendation: 'Implement community-building elements like opening rituals and bias awareness moments to enhance inclusive learning environments.'
-                    },
-                    {
-                        title: 'Assessment Strategy Review',
-                        category: 'Assessment',
-                        similarity: 0.68,
-                        analysis: 'Assessment methods show some alignment with authentic assessment principles, with portfolio-based elements present.',
-                        recommendation: 'Strengthen peer review processes and add more collaborative assessment components to enhance professional relevance.'
-                    }
-                ];
-
-                // Store analysis results in database
-                const { error: analysisError } = await supabase
-                    .from('analysis_results')
-                    .insert([{
-                        submission_id: submission.id,
-                        framework_matches: sampleResults,
-                        overall_score: 0.75,
-                        ai_analysis: 'Comprehensive framework analysis completed using SHE IS AI principles',
-                        recommendations: sampleResults.map(r => r.recommendation).join(' '),
-                        created_at: new Date().toISOString()
-                    }]);
-
-                if (analysisError) {
-                    console.error('Analysis storage error:', analysisError);
-                    showStatus('Analysis completed but failed to save results', 'error');
-                } else {
-                    showStatus('Analysis completed successfully!', 'success');
-                }
-
-                displayResults(sampleResults);
+                // Step 1: Extract text from uploaded files
+                const extractedTexts = await extractTextFromFiles(submission.file_paths);
+                
+                // Step 2: Call your RAG system for real analysis
+                const analysisResults = await callRAGAnalysis(extractedTexts, submission.id);
+                
+                // Step 3: Store and display results
+                await storeAnalysisResults(submission.id, analysisResults);
+                displayResults(analysisResults.framework_matches);
                 
             } catch (error) {
                 console.error('Analysis error:', error);
                 showStatus(`Analysis failed: ${error.message}`, 'error');
+                
+                // Fallback to sample results for now
+                const sampleResults = await generateSampleResults(submission);
+                displayResults(sampleResults);
             }
+        }
+
+        async function callRAGAnalysis(texts, submissionId) {
+            // This will call your actual RAG system
+            const response = await fetch('/api/analyze-course', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    texts: texts,
+                    submission_id: submissionId,
+                    framework_version: 'she_is_ai_v1'
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('RAG analysis failed');
+            }
+            
+            return await response.json();
+        }
+
+        async function extractTextFromFiles(filePaths) {
+            // Extract text from uploaded files
+            const texts = [];
+            
+            for (const filePath of filePaths) {
+                try {
+                    // Get file URL from Supabase storage
+                    const { data } = await supabase.storage
+                        .from('course-submissions')
+                        .createSignedUrl(filePath, 60);
+                    
+                    if (data?.signedUrl) {
+                        // You'd implement actual text extraction here
+                        // For now, placeholder that indicates file processing
+                        texts.push({
+                            file_path: filePath,
+                            content: `[Content from ${filePath} would be extracted here]`,
+                            file_type: filePath.split('.').pop()
+                        });
+                    }
+                } catch (error) {
+                    console.error(`Failed to process ${filePath}:`, error);
+                }
+            }
+            
+            return texts;
+        }
+
+        async function storeAnalysisResults(submissionId, analysisResults) {
+            const { error } = await supabase
+                .from('analysis_results')
+                .insert([{
+                    submission_id: submissionId,
+                    framework_matches: analysisResults.framework_matches,
+                    overall_score: analysisResults.overall_score,
+                    ai_analysis: analysisResults.detailed_analysis,
+                    recommendations: analysisResults.recommendations,
+                    analysis_metadata: {
+                        framework_version: analysisResults.framework_version,
+                        total_matches: analysisResults.framework_matches.length,
+                        processing_time: analysisResults.processing_time,
+                        confidence_scores: analysisResults.confidence_scores
+                    },
+                    created_at: new Date().toISOString()
+                }]);
+
+            if (error) {
+                console.error('Failed to store analysis results:', error);
+            }
+        }
+
+        async function generateSampleResults(submission) {
+            // Enhanced sample structure that reflects real framework categories
+            return [
+                {
+                    title: 'Equity & Inclusion Principles',
+                    category: 'Core Framework - Equity',
+                    framework_section: 'equity_foundations',
+                    similarity: 0.85,
+                    confidence: 0.82,
+                    analysis: `Analysis of ${submission.original_filenames.join(', ')}: Strong alignment with equity principles found. Content demonstrates awareness of diverse learning needs and multiple perspectives.`,
+                    recommendation: 'Consider adding explicit bias elimination protocols and diverse example selection strategies.',
+                    evidence_snippets: [
+                        'Found inclusive language patterns',
+                        'Multiple learning modalities addressed',
+                        'Cultural responsiveness indicators present'
+                    ]
+                },
+                {
+                    title: 'Community Building & Opening Rituals',
+                    category: 'Learning Environment',
+                    framework_section: 'community_practices',
+                    similarity: 0.72,
+                    confidence: 0.68,
+                    analysis: 'Lesson structure shows good pedagogical practices but limited community-building elements.',
+                    recommendation: 'Implement structured opening rituals and bias awareness moments to enhance inclusive environments.',
+                    evidence_snippets: [
+                        'Clear learning objectives present',
+                        'Limited community engagement activities',
+                        'Opportunity for ritual implementation'
+                    ]
+                },
+                {
+                    title: 'Authentic Assessment & Portfolio Methods',
+                    category: 'Assessment Strategy',
+                    framework_section: 'assessment_equity',
+                    similarity: 0.68,
+                    confidence: 0.75,
+                    analysis: 'Assessment approach shows portfolio elements but could strengthen peer review and collaborative components.',
+                    recommendation: 'Enhance peer review processes and add collaborative assessment strategies for professional relevance.',
+                    evidence_snippets: [
+                        'Portfolio-based elements identified',
+                        'Limited peer interaction in assessments',
+                        'Professional relevance indicators present'
+                    ]
+                },
+                {
+                    title: 'Neurodivergent Learning Support',
+                    category: 'Accessibility & Inclusion',
+                    framework_section: 'neurodivergent_support',
+                    similarity: 0.59,
+                    confidence: 0.71,
+                    analysis: 'Basic accessibility considerations present but could be enhanced for neurodivergent learners.',
+                    recommendation: 'Add multi-sensory learning options and flexible pacing structures.',
+                    evidence_snippets: [
+                        'Some visual learning supports',
+                        'Limited sensory alternatives',
+                        'Pacing flexibility needs improvement'
+                    ]
+                },
+                {
+                    title: 'Anti-Bias Curriculum Integration',
+                    category: 'Content Strategy',
+                    framework_section: 'bias_elimination',
+                    similarity: 0.64,
+                    confidence: 0.69,
+                    analysis: 'Content shows awareness of bias issues but lacks systematic anti-bias integration.',
+                    recommendation: 'Implement systematic bias checks and diverse perspective integration throughout curriculum.',
+                    evidence_snippets: [
+                        'Bias awareness present in some sections',
+                        'Inconsistent diverse representation',
+                        'Systematic approach needed'
+                    ]
+                }
+            ];
         }
 
         function displayResults(matches) {

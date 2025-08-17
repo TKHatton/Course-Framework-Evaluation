@@ -1,0 +1,9 @@
+{
+  "name": "course-framework-evaluation",
+  "version": "1.0.0",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "pdf-parse": "^1.1.1",
+    "mammoth": "^1.6.0"
+  }
+}
