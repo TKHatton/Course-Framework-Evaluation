@@ -424,40 +424,6 @@
             </a>
         </div>
 
-        <!-- Framework Resources Section -->
-        <div class="section">
-            <h2><span class="icon">📖</span> Framework Resources</h2>
-            <div class="resources-grid">
-                <a href="#" class="download-btn" onclick="downloadFramework('educators')">
-                    <span>
-                        <strong>Framework for Educators</strong><br>
-                        <small>Complete implementation guide</small>
-                    </span>
-                    <span>📄 PDF</span>
-                </a>
-                <a href="#" class="download-btn" onclick="downloadFramework('neurodivergent')">
-                    <span>
-                        <strong>Framework for Neurodivergent Learners</strong><br>
-                        <small>Specialized accessibility version</small>
-                    </span>
-                    <span>📄 PDF</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Video Section -->
-        <div class="section">
-            <h2><span class="icon">🎥</span> Understanding the Framework</h2>
-            <p style="margin-bottom: 20px; color: #6b7280;">Watch this introduction to learn how the framework can transform your educational approach</p>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button" onclick="playVideo()">▶️</div>
-                    <h3 style="margin-bottom: 10px;">Framework Deep Dive Podcast</h3>
-                    <p style="opacity: 0.8;">Coming Soon: Expert discussion on equity-centered AI education</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Upload and Evaluate Section -->
         <div class="section">
             <h2><span class="icon">📁</span> Upload & Evaluate Course Materials</h2>
@@ -831,16 +797,8 @@
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Download functionality (placeholder)
-        function downloadFramework(type) {
-            const frameworkType = type === 'educators' ? 'Framework for Educators' : 'Framework for Neurodivergent Learners';
-            showStatus(`Coming Soon: ${frameworkType} PDF download will be available once the documents are finalized.`, 'info');
-        }
-
-        // Video functionality (placeholder)
-        function playVideo() {
-            showStatus('Coming Soon: Framework introduction podcast/video will be available here.', 'info');
-        }
+        // Remove placeholder functions since we removed those sections
+        // All functionality now focuses on the core: framework link + course analysis
     </script>
 </body>
 </html>
