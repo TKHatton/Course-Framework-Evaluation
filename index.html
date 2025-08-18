@@ -12,285 +12,328 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #1f2937;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
             padding: 20px;
         }
 
-        .header {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             background: white;
-            border-radius: 16px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
             padding: 40px;
-            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
         }
 
-        .logo {
+        .header h1 {
             font-size: 2.5rem;
-            font-weight: 800;
-            color: #374151;
             margin-bottom: 10px;
-            letter-spacing: -0.025em;
-        }
-
-        .title {
-            font-size: 2rem;
             font-weight: 700;
-            color: #1f2937;
+        }
+
+        .header h2 {
+            font-size: 1.5rem;
             margin-bottom: 10px;
+            font-weight: 400;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #6b7280;
+        .header p {
+            font-size: 1.1rem;
             margin-bottom: 20px;
-        }
-
-        .description {
-            font-size: 1rem;
-            color: #4b5563;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
         .framework-link {
             display: inline-block;
-            background: #374151;
+            background: rgba(255,255,255,0.2);
             color: white;
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .framework-link:hover {
-            background: #1f2937;
-            transform: translateY(-1px);
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
-        .section {
-            background: white;
-            border-radius: 16px;
+        .main-content {
+            padding: 40px;
+        }
+
+        .upload-section {
+            background: #f8fafc;
+            border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .icon {
-            font-size: 1.5rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: #f8fafc;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .download-btn:hover {
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-            transform: translateY(-1px);
-        }
-
-        .video-container {
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 15px;
-            border: 2px solid #e5e7eb;
-            margin-bottom: 20px;
-        }
-
-        .video-placeholder {
-            background: #374151;
-            border-radius: 12px;
-            padding: 60px 40px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .play-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-        }
-
-        .upload-area {
-            border: 3px dashed #d1d5db;
-            border-radius: 12px;
-            padding: 40px 20px;
+            border: 2px dashed #cbd5e1;
             text-align: center;
             transition: all 0.3s ease;
-            cursor: pointer;
-            background: #fafafa;
-            margin-bottom: 20px;
         }
 
-        .upload-area:hover {
-            border-color: #9ca3af;
-            background: #f5f5f5;
-        }
-
-        .upload-area.dragover {
-            border-color: #374151;
-            background: #f1f5f9;
-            transform: scale(1.01);
+        .upload-section.dragover {
+            border-color: #4f46e5;
+            background: #f0f4ff;
         }
 
         .upload-icon {
             font-size: 3rem;
-            color: #9ca3af;
-            margin-bottom: 15px;
+            color: #94a3b8;
+            margin-bottom: 20px;
         }
 
         .upload-text {
-            font-size: 1.1rem;
-            color: #6b7280;
+            font-size: 1.2rem;
+            color: #475569;
             margin-bottom: 10px;
-            font-weight: 600;
         }
 
-        .upload-hint {
+        .upload-subtext {
+            color: #64748b;
             font-size: 0.9rem;
-            color: #9ca3af;
         }
 
         .file-input {
             display: none;
         }
 
-        .uploaded-files {
+        .upload-btn {
+            background: #4f46e5;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
             margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: #4338ca;
+        }
+
+        .file-list {
+            margin: 20px 0;
         }
 
         .file-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            background: white;
             padding: 15px;
-            background: #f8fafc;
             border-radius: 8px;
             margin-bottom: 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .file-icon {
-            font-size: 1.3rem;
-            color: #374151;
+            margin-right: 12px;
+            color: #4f46e5;
         }
 
-        .remove-file {
-            background: #fee2e2;
-            color: #dc2626;
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .file-size {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .remove-btn {
+            background: #ef4444;
+            color: white;
             border: none;
             padding: 6px 12px;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
         }
 
-        .remove-file:hover {
-            background: #fca5a5;
-        }
-
-        .evaluate-btn {
-            background: #374151;
+        .analyze-btn {
+            width: 100%;
+            background: #059669;
             color: white;
-            padding: 16px 32px;
+            padding: 15px;
             border: none;
             border-radius: 8px;
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
+            transition: background 0.3s ease;
         }
 
-        .evaluate-btn:hover {
-            background: #1f2937;
-            transform: translateY(-1px);
+        .analyze-btn:hover {
+            background: #047857;
         }
 
-        .evaluate-btn:disabled {
-            opacity: 0.5;
+        .analyze-btn:disabled {
+            background: #94a3b8;
             cursor: not-allowed;
-            transform: none;
         }
 
-        .loading {
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .status.success {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status.loading {
+            background: #dbeafe;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .results-section {
+            margin-top: 30px;
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #4f46e5;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .result-category {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .alignment-score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .score-high { color: #059669; }
+        .score-medium { color: #d97706; }
+        .score-low { color: #dc2626; }
+
+        .result-analysis {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .recommendations {
+            margin-top: 15px;
+        }
+
+        .recommendations h4 {
+            color: #374151;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .evidence {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .evidence h4 {
+            color: #6b7280;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .evidence-item {
+            background: #fafafa;
+            padding: 6px 10px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
             display: none;
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #e5e7eb;
-            border-top: 4px solid #374151;
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #4f46e5;
             border-radius: 50%;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
             margin: 0 auto 15px;
         }
@@ -300,522 +343,468 @@
             100% { transform: rotate(360deg); }
         }
 
-        .results {
-            display: none;
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin-top: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
-        }
-
-        .results h3 {
-            color: #1f2937;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .match {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 4px solid #374151;
-            border: 1px solid #e5e7eb;
-        }
-
-        .match h4 {
-            color: #1f2937;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .match-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-
-        .tag {
-            background: #e5e7eb;
-            padding: 6px 12px;
-            border-radius: 6px;
-            color: #374151;
-            font-weight: 600;
-        }
-
-        .similarity {
-            background: #d1fae5;
-            color: #166534;
-        }
-
-        .match-content {
-            color: #4b5563;
-            line-height: 1.7;
-        }
-
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                margin: 10px;
+                border-radius: 10px;
             }
             
-            .header, .section {
-                padding: 25px;
+            .header {
+                padding: 30px 20px;
             }
             
-            .logo {
+            .header h1 {
                 font-size: 2rem;
             }
             
-            .title {
-                font-size: 1.5rem;
+            .main-content {
+                padding: 20px;
             }
-            
-            .resources-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .status-message {
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            display: none;
-        }
-
-        .status-success {
-            background: #d1fae5;
-            color: #166534;
-            border: 1px solid #a7f3d0;
-        }
-
-        .status-error {
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fca5a5;
-        }
-
-        .status-info {
-            background: #dbeafe;
-            color: #1d4ed8;
-            border: 1px solid #93c5fd;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
         <div class="header">
-            <div class="logo">SHE IS AI</div>
-            <h1 class="title">Course Submission Portal</h1>
-            <p class="subtitle">Submit Your Course for Expert Review</p>
-            <p class="description">
-                Get personalized feedback on your educational content based on the comprehensive SHE IS AI framework. 
-                Our system analyzes your courses for equity, inclusion, bias elimination, and pedagogical best practices.
-            </p>
-            <a href="https://educationalframework.netlify.app/" target="_blank" class="framework-link">
+            <h1>SHE IS AI</h1>
+            <h2>Course Submission Portal</h2>
+            <p>Submit Your Course for Expert Review</p>
+            <p>Get personalized feedback on your educational content based on the comprehensive SHE IS AI framework. Our system analyzes your courses for equity, inclusion, bias elimination, and pedagogical best practices.</p>
+            <a href="https://sheisai.org" target="_blank" class="framework-link">
                 📚 View Framework Website
             </a>
         </div>
 
-        <!-- Upload and Evaluate Section -->
-        <div class="section">
-            <h2><span class="icon">📁</span> Upload & Evaluate Course Materials</h2>
-            <div id="statusMessage" class="status-message"></div>
-            <div class="upload-area" onclick="triggerFileInput()">
-                <div class="upload-icon">☁️</div>
+        <div class="main-content">
+            <div class="upload-section" id="uploadSection">
+                <div class="upload-icon">📁</div>
                 <div class="upload-text">Drop files here or click to browse</div>
-                <div class="upload-hint">Supports PDF, Word, Google Docs, and text files</div>
+                <div class="upload-subtext">Supports PDF, Word, Google Docs, and text files</div>
+                <input type="file" id="fileInput" class="file-input" multiple accept=".pdf,.doc,.docx,.txt">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
             </div>
-            <input type="file" id="fileInput" class="file-input" multiple accept=".pdf,.doc,.docx,.txt,.gdoc">
-            <div id="uploadedFiles" class="uploaded-files"></div>
-            
-            <button class="evaluate-btn" id="evaluateBtn" onclick="uploadFiles()" disabled>
-                📋 Upload Files First
+
+            <div class="file-list" id="fileList"></div>
+
+            <button class="analyze-btn" id="analyzeBtn" onclick="analyzeFiles()" disabled>
+                🔍 Submit 1 File for Review
             </button>
-        </div>
 
-        <!-- Loading Animation -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p style="color: #6b7280; font-size: 1.1rem;">Analyzing your course materials against the SHE IS AI framework...</p>
-        </div>
+            <div class="status" id="status" style="display: none;"></div>
 
-        <!-- Results Section -->
-        <div class="results" id="results">
-            <h3>📊 Framework Analysis Results</h3>
-            <div id="matches"></div>
+            <div class="loading-spinner" id="loading">
+                <div class="spinner"></div>
+                <div>Analyzing your course content...</div>
+            </div>
+
+            <div class="results-section" id="results" style="display: none;">
+                <h3 class="results-title">
+                    📊 Framework Analysis Results
+                </h3>
+                <div id="resultsContent"></div>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // No Supabase credentials needed in HTML anymore!
-        // The serverless function handles all database operations
-        
         let uploadedFiles = [];
 
-        // Status message functionality
-        function showStatus(message, type = 'info') {
-            const statusElement = document.getElementById('statusMessage');
-            statusElement.textContent = message;
-            statusElement.className = `status-message status-${type}`;
-            statusElement.style.display = 'block';
+        // File upload handling
+        const fileInput = document.getElementById('fileInput');
+        const uploadSection = document.getElementById('uploadSection');
+        const fileList = document.getElementById('fileList');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+
+        fileInput.addEventListener('change', handleFileSelect);
+
+        // Drag and drop
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.classList.add('dragover');
+        });
+
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.classList.remove('dragover');
+        });
+
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.classList.remove('dragover');
+            handleFileSelect({target: {files: e.dataTransfer.files}});
+        });
+
+        function handleFileSelect(event) {
+            const files = Array.from(event.target.files);
             
-            // Auto-hide success messages after 5 seconds
-            if (type === 'success') {
-                setTimeout(() => {
-                    statusElement.style.display = 'none';
-                }, 5000);
-            }
-        }
-
-        // File upload functionality
-        function triggerFileInput() {
-            document.getElementById('fileInput').click();
-        }
-
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            handleFiles(e.target.files);
-        });
-
-        // Drag and drop functionality
-        const uploadArea = document.querySelector('.upload-area');
-
-        uploadArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', function(e) {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.type.includes('pdf') || file.type.includes('doc') || file.type.includes('text') || file.name.includes('gdoc')) {
+            files.forEach(file => {
+                if (!uploadedFiles.find(f => f.name === file.name)) {
                     uploadedFiles.push(file);
-                    displayUploadedFile(file);
-                } else {
-                    showStatus(`${file.name} is not a supported file type`, 'error');
                 }
             });
             
-            updateEvaluateButton();
+            updateFileList();
+            updateAnalyzeButton();
         }
 
-        function displayUploadedFile(file) {
-            const container = document.getElementById('uploadedFiles');
-            const fileDiv = document.createElement('div');
-            fileDiv.className = 'file-item';
-            fileDiv.innerHTML = `
-                <div class="file-info">
-                    <span class="file-icon">📄</span>
-                    <div>
-                        <div style="font-weight: 600;">${file.name}</div>
-                        <div style="font-size: 0.8rem; color: #6b7280;">${(file.size / 1024).toFixed(1)} KB</div>
+        function updateFileList() {
+            fileList.innerHTML = '';
+            
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-icon">📄</div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${(file.size / 1024).toFixed(1)} KB</div>
                     </div>
-                </div>
-                <button class="remove-file" onclick="removeFile('${file.name}', this)">Remove</button>
-            `;
-            container.appendChild(fileDiv);
+                    <button class="remove-btn" onclick="removeFile(${index})">Remove</button>
+                `;
+                fileList.appendChild(fileItem);
+            });
         }
 
-        function removeFile(fileName, button) {
-            uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
-            button.parentElement.remove();
-            updateEvaluateButton();
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            updateFileList();
+            updateAnalyzeButton();
         }
 
-        function updateEvaluateButton() {
-            const btn = document.getElementById('evaluateBtn');
-            btn.disabled = uploadedFiles.length === 0;
-            btn.textContent = uploadedFiles.length === 0 ? 
-                '📋 Upload Files First' : 
-                `🚀 Submit ${uploadedFiles.length} File${uploadedFiles.length > 1 ? 's' : ''} for Review`;
+        function updateAnalyzeButton() {
+            if (uploadedFiles.length > 0) {
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = `🔍 Submit ${uploadedFiles.length} File${uploadedFiles.length > 1 ? 's' : ''} for Review`;
+            } else {
+                analyzeBtn.disabled = true;
+                analyzeBtn.textContent = '🔍 Submit 1 File for Review';
+            }
         }
 
-        // File upload to Supabase
-        async function uploadFiles() {
-    if (uploadedFiles.length === 0) {
-        showStatus('Please select files to upload', 'error');
-        return;
-    }
-
-    // Show loading
-    document.getElementById('loading').style.display = 'block';
-    document.getElementById('results').style.display = 'none';
-    document.getElementById('evaluateBtn').disabled = true;
-
-    try {
-        showStatus('Processing files...', 'loading');
-
-        // Process first file only for now
-        const file = uploadedFiles[0];
-        
-        // Read file content
-        const fileContent = await readFileAsBase64(file);
-        
-        const response = await fetch('/.netlify/functions/upload-files', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                fileName: file.name,
-                fileContent: fileContent,
-                fileType: file.type
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`Upload failed: ${response.status}`);
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
         }
 
-        const result = await response.json();
-        
-        if (result.success && result.analysis_results) {
-            showStatus('Analysis complete!', 'success');
-            displayResults(result.analysis_results);
-        } else {
-            throw new Error('Analysis failed');
-        }
+        // BULLETPROOF CLIENT-SIDE ANALYSIS
+        async function analyzeFiles() {
+            if (uploadedFiles.length === 0) {
+                showStatus('Please select files to analyze', 'error');
+                return;
+            }
 
-    } catch (error) {
-        console.error('Upload error:', error);
-        showStatus('Upload failed. Please try again.', 'error');
-    } finally {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('evaluateBtn').disabled = false;
-    }
-}
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            analyzeBtn.disabled = true;
+            showStatus('Analyzing your course content...', 'loading');
 
-function readFileAsBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            // Remove data URL prefix (e.g., "data:text/plain;base64,")
-            const base64 = reader.result.split(',')[1];
-            resolve(base64);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
-}
-
-        async function analyzeSubmission(submission) {
             try {
-                showStatus('Analyzing content against SHE IS AI framework...', 'info');
+                // Read the first file
+                const file = uploadedFiles[0];
+                const textContent = await readFileContent(file);
                 
-                // Step 1: Extract text from uploaded files
-                const extractedTexts = await extractTextFromFiles(submission.file_paths);
+                // Analyze the content
+                const results = analyzeContent(textContent, file.name);
                 
-                // Step 2: Call your RAG system for real analysis
-                const analysisResults = await callRAGAnalysis(extractedTexts, submission.id);
-                
-                // Step 3: Store and display results
-                await storeAnalysisResults(submission.id, analysisResults);
-                displayResults(analysisResults.framework_matches);
+                // Display results
+                displayResults(results);
+                showStatus('Analysis complete!', 'success');
                 
             } catch (error) {
                 console.error('Analysis error:', error);
-                showStatus(`Analysis failed: ${error.message}`, 'error');
+                showStatus('Error reading file. Please try a different format.', 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        function readFileContent(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
                 
-                // Fallback to sample results for now
-                const sampleResults = await generateSampleResults(submission);
-                displayResults(sampleResults);
-            }
-        }
-
-        async function callRAGAnalysis(texts, submissionId) {
-            // This will call your actual RAG system
-            const response = await fetch('/api/analyze-course', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    texts: texts,
-                    submission_id: submissionId,
-                    framework_version: 'she_is_ai_v1'
-                })
-            });
-            
-            if (!response.ok) {
-                throw new Error('RAG analysis failed');
-            }
-            
-            return await response.json();
-        }
-
-        async function extractTextFromFiles(filePaths) {
-            // Extract text from uploaded files
-            const texts = [];
-            
-            for (const filePath of filePaths) {
-                try {
-                    // Get file URL from Supabase storage
-                    const { data } = await supabase.storage
-                        .from('course-submissions')
-                        .createSignedUrl(filePath, 60);
+                reader.onload = function(e) {
+                    let content = e.target.result;
                     
-                    if (data?.signedUrl) {
-                        // You'd implement actual text extraction here
-                        // For now, placeholder that indicates file processing
-                        texts.push({
-                            file_path: filePath,
-                            content: `[Content from ${filePath} would be extracted here]`,
-                            file_type: filePath.split('.').pop()
-                        });
-                    }
-                } catch (error) {
-                    console.error(`Failed to process ${filePath}:`, error);
-                }
-            }
-            
-            return texts;
-        }
-
-        async function storeAnalysisResults(submissionId, analysisResults) {
-            const { error } = await supabase
-                .from('analysis_results')
-                .insert([{
-                    submission_id: submissionId,
-                    framework_matches: analysisResults.framework_matches,
-                    overall_score: analysisResults.overall_score,
-                    ai_analysis: analysisResults.detailed_analysis,
-                    recommendations: analysisResults.recommendations,
-                    analysis_metadata: {
-                        framework_version: analysisResults.framework_version,
-                        total_matches: analysisResults.framework_matches.length,
-                        processing_time: analysisResults.processing_time,
-                        confidence_scores: analysisResults.confidence_scores
-                    },
-                    created_at: new Date().toISOString()
-                }]);
-
-            if (error) {
-                console.error('Failed to store analysis results:', error);
-            }
-        }
-
-        async function generateSampleResults(submission) {
-            // Enhanced sample structure that reflects real framework categories
-            return [
-                {
-                    title: 'Equity & Inclusion Principles',
-                    category: 'Core Framework - Equity',
-                    framework_section: 'equity_foundations',
-                    similarity: 0.85,
-                    confidence: 0.82,
-                    analysis: `Analysis of ${submission.original_filenames.join(', ')}: Strong alignment with equity principles found. Content demonstrates awareness of diverse learning needs and multiple perspectives.`,
-                    recommendation: 'Consider adding explicit bias elimination protocols and diverse example selection strategies.',
-                    evidence_snippets: [
-                        'Found inclusive language patterns',
-                        'Multiple learning modalities addressed',
-                        'Cultural responsiveness indicators present'
-                    ]
-                },
-                {
-                    title: 'Community Building & Opening Hook',
-                    category: 'Learning Environment',
-                    framework_section: 'community_practices',
-                    similarity: 0.72,
-                    confidence: 0.68,
-                    analysis: 'Lesson structure shows good pedagogical practices but limited community-building elements.',
-                    recommendation: 'Implement structured opening hook and bias awareness moments to enhance inclusive environments.',
-                    evidence_snippets: [
-                        'Clear learning objectives present',
-                        'Limited community engagement activities',
-                        'Opportunity for hook implementation'
-                    ]
-                },
-                {
-                    title: 'Authentic Assessment & Portfolio Methods',
-                    category: 'Assessment Strategy',
-                    framework_section: 'assessment_equity',
-                    similarity: 0.68,
-                    confidence: 0.75,
-                    analysis: 'Assessment approach shows portfolio elements but could strengthen peer review and collaborative components.',
-                    recommendation: 'Enhance peer review processes and add collaborative assessment strategies for professional relevance.',
-                    evidence_snippets: [
-                        'Portfolio-based elements identified',
-                        'Limited peer interaction in assessments',
-                        'Professional relevance indicators present'
-                    ]
-                },
-                {
-                    title: 'Neurodivergent Learning Support',
-                    category: 'Accessibility & Inclusion',
-                    framework_section: 'neurodivergent_support',
-                    similarity: 0.59,
-                    confidence: 0.71,
-                    analysis: 'Basic accessibility considerations present but could be enhanced for neurodivergent learners.',
-                    recommendation: 'Add multi-sensory learning options and flexible pacing structures.',
-                    evidence_snippets: [
-                        'Some visual learning supports',
-                        'Limited sensory alternatives',
-                        'Pacing flexibility needs improvement'
-                    ]
-                },
-                {
-                    title: 'Anti-Bias Curriculum Integration',
-                    category: 'Content Strategy',
-                    framework_section: 'bias_elimination',
-                    similarity: 0.64,
-                    confidence: 0.69,
-                    analysis: 'Content shows awareness of bias issues but lacks systematic anti-bias integration.',
-                    recommendation: 'Implement systematic bias checks and diverse perspective integration throughout curriculum.',
-                    evidence_snippets: [
-                        'Bias awareness present in some sections',
-                        'Inconsistent diverse representation',
-                        'Systematic approach needed'
-                    ]
-                }
-            ];
-        }
-
-        function displayResults(matches) {
-            const matchesContainer = document.getElementById('matches');
-            matchesContainer.innerHTML = '';
-
-            matches.forEach(match => {
-                const matchElement = document.createElement('div');
-                matchElement.className = 'match';
+                    // Clean up content
+                    content = content.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, '');
+                    content = content.replace(/\s+/g, ' ').trim();
+                    
+                    resolve(content);
+                };
                 
-                matchElement.innerHTML = `
-                    <h4>${match.title}</h4>
-                    <div class="match-meta">
-                        <span class="tag">${match.category}</span>
-                        <span class="tag similarity">${(match.similarity * 100).toFixed(0)}% Framework Alignment</span>
+                reader.onerror = reject;
+                reader.readAsText(file);
+            });
+        }
+
+        function analyzeContent(textContent, fileName) {
+            console.log(`Analyzing ${fileName}: ${textContent.length} characters`);
+            
+            // Check content length
+            if (!textContent || textContent.trim().length < 50) {
+                return [{
+                    title: 'Insufficient Content for Analysis',
+                    category: 'Content Review',
+                    alignment_score: 0,
+                    analysis: 'The submitted file does not contain enough readable text for analysis. Please ensure your file contains substantial educational content.',
+                    recommendations: [
+                        'Submit files with substantial text content',
+                        'Ensure files are not corrupted or password-protected',
+                        'Try converting to plain text format'
+                    ],
+                    evidence: [`File: ${fileName}`, `Content length: ${textContent.length} characters`]
+                }];
+            }
+
+            const contentLower = textContent.toLowerCase();
+            
+            // Educational keywords check
+            const educationalKeywords = [
+                'learn', 'student', 'curriculum', 'lesson', 'objective', 'assessment', 'education',
+                'teaching', 'course', 'syllabus', 'assignment', 'exam', 'grade', 'classroom',
+                'instructor', 'pedagogy', 'study', 'academic', 'training', 'module', 'unit',
+                'workshop', 'seminar', 'lecture', 'tutorial', 'evaluation', 'feedback',
+                'learning', 'educational', 'teacher', 'professor', 'school', 'university'
+            ];
+
+            const educationalMatches = educationalKeywords.filter(keyword => 
+                contentLower.includes(keyword)
+            );
+
+            console.log(`Found ${educationalMatches.length} educational indicators`);
+
+            // Check for non-educational content patterns
+            const nonEducationalPatterns = [
+                // CV/Resume patterns
+                'experience', 'skills', 'employment', 'resume', 'cv', 'curriculum vitae',
+                'work history', 'professional experience', 'references available',
+                
+                // Travel patterns
+                'flight', 'hotel', 'reservation', 'itinerary', 'travel', 'vacation',
+                'departure', 'arrival', 'boarding', 'check-in',
+                
+                // Personal document patterns
+                'address', 'phone number', 'email address', 'date of birth',
+                'social security', 'passport', 'driver license'
+            ];
+
+            const nonEducationalMatches = nonEducationalPatterns.filter(pattern => 
+                contentLower.includes(pattern)
+            );
+
+            // If clearly non-educational content
+            if (nonEducationalMatches.length > 3 || educationalMatches.length < 3) {
+                const contentType = nonEducationalMatches.length > 3 ? 'personal document (CV, travel plans, etc.)' : 'non-educational content';
+                
+                return [{
+                    title: 'Non-Educational Content Detected',
+                    category: 'Content Classification',
+                    alignment_score: 0,
+                    analysis: `This appears to be ${contentType} rather than educational material. Our framework evaluates courses, curricula, lesson plans, and other educational content.`,
+                    recommendations: [
+                        'Submit educational materials such as course syllabi or lesson plans',
+                        'Include learning objectives and educational methodologies', 
+                        'Ensure content relates to teaching, learning, or curriculum design'
+                    ],
+                    evidence: [
+                        `Educational indicators: ${educationalMatches.length}`,
+                        `Non-educational patterns: ${nonEducationalMatches.length}`,
+                        `Content type: ${contentType}`
+                    ]
+                }];
+            }
+
+            // Framework analysis for educational content
+            const frameworkAreas = {
+                'Equity & Inclusion': {
+                    keywords: ['equity', 'inclusion', 'inclusive', 'diverse', 'diversity', 'bias', 'fair', 'fairness', 'accessible', 'accessibility', 'marginalized', 'underrepresented'],
+                    weight: 1.2
+                },
+                'Community Building': {
+                    keywords: ['community', 'collaboration', 'collaborative', 'peer', 'group', 'social', 'relationship', 'belonging', 'connection'],
+                    weight: 1.0
+                },
+                'Assessment Strategy': {
+                    keywords: ['assessment', 'evaluate', 'evaluation', 'portfolio', 'feedback', 'rubric', 'authentic', 'performance', 'reflection'],
+                    weight: 1.1
+                },
+                'Learning Support': {
+                    keywords: ['support', 'accommodation', 'universal', 'neurodivergent', 'learning differences', 'adaptive', 'flexible', 'personalized'],
+                    weight: 1.0
+                },
+                'Pedagogical Practices': {
+                    keywords: ['pedagogy', 'methodology', 'instructional', 'scaffolding', 'inquiry', 'project-based', 'experiential', 'active learning'],
+                    weight: 0.9
+                }
+            };
+
+            const results = [];
+            
+            Object.entries(frameworkAreas).forEach(([area, config]) => {
+                const matches = config.keywords.filter(keyword => contentLower.includes(keyword));
+                const baseScore = (matches.length / config.keywords.length) * 100;
+                const adjustedScore = Math.min(95, Math.round(baseScore * config.weight));
+                
+                if (matches.length > 0 || results.length < 2) {
+                    let scoreClass = 'score-low';
+                    if (adjustedScore >= 70) scoreClass = 'score-high';
+                    else if (adjustedScore >= 40) scoreClass = 'score-medium';
+                    
+                    results.push({
+                        title: `${area} Analysis`,
+                        category: area,
+                        alignment_score: adjustedScore,
+                        scoreClass: scoreClass,
+                        analysis: generateAnalysis(area, adjustedScore, matches),
+                        recommendations: generateRecommendations(area, adjustedScore),
+                        evidence: [
+                            `Educational content confirmed (${educationalMatches.length} indicators)`,
+                            `${area} keywords found: ${matches.length}/${config.keywords.length}`,
+                            `Framework keywords: ${matches.slice(0, 3).join(', ')}`
+                        ]
+                    });
+                }
+            });
+
+            // Ensure at least one result
+            if (results.length === 0) {
+                results.push({
+                    title: 'Basic Educational Content Analysis',
+                    category: 'General Assessment',
+                    alignment_score: 25,
+                    scoreClass: 'score-low',
+                    analysis: 'Your content appears to be educational but shows limited explicit alignment with equity-centered framework principles.',
+                    recommendations: [
+                        'Review the SHE IS AI framework for specific alignment opportunities',
+                        'Consider incorporating explicit equity and inclusion language',
+                        'Add clear learning objectives and assessment strategies'
+                    ],
+                    evidence: [
+                        `Educational content detected (${educationalMatches.length} indicators)`,
+                        'Limited framework-specific terminology found',
+                        'Opportunity for framework integration'
+                    ]
+                });
+            }
+
+            return results.slice(0, 5); // Limit to 5 results
+        }
+
+        function generateAnalysis(area, score, matches) {
+            const analyses = {
+                'Equity & Inclusion': {
+                    high: 'Excellent integration of equity and inclusion principles. Your content demonstrates strong awareness of diverse learner needs and inclusive practices.',
+                    medium: 'Good foundation in equity and inclusion with room for enhancement. Consider strengthening bias elimination strategies.',
+                    low: 'Limited explicit equity and inclusion content. Significant opportunity to integrate inclusive design principles.'
+                },
+                'Community Building': {
+                    high: 'Strong emphasis on community building and collaborative learning. Excellent integration of social learning principles.',
+                    medium: 'Some community-building elements present. Consider adding more collaborative and peer-learning opportunities.',
+                    low: 'Limited community-building focus. Opportunity to strengthen social learning and peer interaction components.'
+                },
+                'Assessment Strategy': {
+                    high: 'Comprehensive assessment approach with authentic and varied evaluation methods. Strong alignment with best practices.',
+                    medium: 'Solid assessment foundation with opportunities for more authentic and portfolio-based approaches.',
+                    low: 'Basic assessment strategy. Consider incorporating more authentic, performance-based evaluation methods.'
+                },
+                'Learning Support': {
+                    high: 'Excellent attention to diverse learning needs and support systems. Strong universal design principles.',
+                    medium: 'Some learning support elements present. Consider expanding accommodation and accessibility features.',
+                    low: 'Limited learning support strategies. Opportunity to enhance accessibility and accommodations.'
+                },
+                'Pedagogical Practices': {
+                    high: 'Advanced pedagogical approaches with student-centered, inquiry-based methodologies.',
+                    medium: 'Good pedagogical foundation with opportunities for more innovative teaching strategies.',
+                    low: 'Traditional pedagogical approach. Consider integrating more active and experiential learning methods.'
+                }
+            };
+
+            const level = score >= 70 ? 'high' : score >= 40 ? 'medium' : 'low';
+            return analyses[area][level];
+        }
+
+        function generateRecommendations(area, score) {
+            const recommendations = {
+                'Equity & Inclusion': [
+                    'Conduct systematic bias audits of course materials',
+                    'Integrate diverse perspectives and voices throughout content',
+                    'Implement inclusive language and representation standards',
+                    'Add explicit discussions of power dynamics and systemic inequities'
+                ],
+                'Community Building': [
+                    'Implement structured peer collaboration activities',
+                    'Design community-building opening rituals for sessions',
+                    'Create opportunities for learner reflection and sharing',
+                    'Establish peer mentoring and support systems'
+                ],
+                'Assessment Strategy': [
+                    'Develop authentic, real-world assessment tasks',
+                    'Implement portfolio-based evaluation methods',
+                    'Add peer and self-assessment opportunities',
+                    'Create rubrics that value process and growth'
+                ],
+                'Learning Support': [
+                    'Implement universal design for learning principles',
+                    'Provide multiple ways to access and process content',
+                    'Add flexible pacing and deadline options',
+                    'Create comprehensive accommodation frameworks'
+                ],
+                'Pedagogical Practices': [
+                    'Integrate inquiry-based learning approaches',
+                    'Implement project-based and experiential learning',
+                    'Add reflective practice and metacognitive strategies',
+                    'Design scaffolded learning progressions'
+                ]
+            };
+
+            const baseRecs = recommendations[area] || [];
+            
+            if (score < 40) {
+                return ['Significant framework integration needed', ...baseRecs.slice(0, 3)];
+            } else if (score < 70) {
+                return ['Good foundation with enhancement opportunities', ...baseRecs.slice(1, 4)];
+            } else {
+                return ['Strong alignment - consider advanced integration', ...baseRecs.slice(2, 4)];
+            }
+        }
+
+        function displayResults(results) {
+            const resultsContent = document.getElementById('resultsContent');
+            resultsContent.innerHTML = '';
+
+            results.forEach(result => {
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                resultCard.innerHTML = `
+                    <div class="result-header">
+                        <div>
+                            <div class="result-title">${result.title}</div>
+                            <div class="result-category">${result.category}</div>
+                        </div>
                     </div>
-                    <div class="match-content">
-                        <p><strong>Analysis:</strong> ${match.analysis}</p>
-                        <p><strong>Recommendation:</strong> ${match.recommendation}</p>
+                    <div class="alignment-score ${result.scoreClass || (result.alignment_score >= 70 ? 'score-high' : result.alignment_score >= 40 ? 'score-medium' : 'score-low')}">
+                        ${result.alignment_score}% Framework Alignment
+                    </div>
+                    <div class="result-analysis">${result.analysis}</div>
+                    <div class="recommendations">
+                        <h4>Recommendations</h4>
+                        <ul>
+                            ${result.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="evidence">
+                        <h4>Analysis Evidence</h4>
+                        ${result.evidence.map(ev => `<div class="evidence-item">${ev}</div>`).join('')}
                     </div>
                 `;
-                
-                matchesContainer.appendChild(matchElement);
+                resultsContent.appendChild(resultCard);
             });
 
             document.getElementById('results').style.display = 'block';
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Remove placeholder functions since we removed those sections
-        // All functionality now focuses on the core: framework link + course analysis
     </script>
 </body>
 </html>
