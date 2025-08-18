@@ -549,54 +549,71 @@
 
         // File upload to Supabase
         async function uploadFiles() {
-            if (uploadedFiles.length === 0) {
-                showStatus('Please select files to upload', 'error');
-                return;
-            }
+    if (uploadedFiles.length === 0) {
+        showStatus('Please select files to upload', 'error');
+        return;
+    }
 
-            // Show loading
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('results').style.display = 'none';
-            document.getElementById('evaluateBtn').disabled = true;
+    // Show loading
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('evaluateBtn').disabled = true;
 
-            try {
-                showStatus('Uploading files and creating submission...', 'info');
-                
-                // Create form data with files
-                const formData = new FormData();
-                uploadedFiles.forEach((file, index) => {
-                    formData.append(`file_${index}`, file);
-                });
-                
-                // Upload files and create submission via serverless function
-                const uploadResponse = await fetch('/.netlify/functions/upload-files', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (!uploadResponse.ok) {
-                    throw new Error(`Upload failed: ${uploadResponse.statusText}`);
-                }
-                
-                const uploadData = await uploadResponse.json();
-                
-                if (!uploadData.success) {
-                    throw new Error(uploadData.error || 'Upload failed');
-                }
-                
-                showStatus('Files uploaded successfully! Starting analysis...', 'success');
-                
-                // Start analysis with the submission data
-                await analyzeSubmission(uploadData.submission);
-                
-            } catch (error) {
-                console.error('Upload error:', error);
-                showStatus(`Upload failed: ${error.message}`, 'error');
-            } finally {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('evaluateBtn').disabled = false;
-            }
+    try {
+        showStatus('Processing files...', 'loading');
+
+        // Process first file only for now
+        const file = uploadedFiles[0];
+        
+        // Read file content
+        const fileContent = await readFileAsBase64(file);
+        
+        const response = await fetch('/.netlify/functions/upload-files', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fileName: file.name,
+                fileContent: fileContent,
+                fileType: file.type
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Upload failed: ${response.status}`);
         }
+
+        const result = await response.json();
+        
+        if (result.success && result.analysis_results) {
+            showStatus('Analysis complete!', 'success');
+            displayResults(result.analysis_results);
+        } else {
+            throw new Error('Analysis failed');
+        }
+
+    } catch (error) {
+        console.error('Upload error:', error);
+        showStatus('Upload failed. Please try again.', 'error');
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('evaluateBtn').disabled = false;
+    }
+}
+
+function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            // Remove data URL prefix (e.g., "data:text/plain;base64,")
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
 
         async function analyzeSubmission(submission) {
             try {
